@@ -1,0 +1,90 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-led: var(--led);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/*
+  Palitra: po'lat (fon), oq (yuzalar), to'q ko'k siyoh (matn va asosiy tugma),
+  yashil "LED" nuqta. Kategoriya ranglari energiya yorlig'idan olingan.
+*/
+:root {
+  --radius: 0.5rem;
+  --background: #e8ecef;
+  --foreground: #0e1b2c;
+  --card: #ffffff;
+  --card-foreground: #0e1b2c;
+  --popover: #ffffff;
+  --popover-foreground: #0e1b2c;
+  --primary: #0e1b2c;
+  --primary-foreground: #f5f8fa;
+  --secondary: #dbe1e6;
+  --secondary-foreground: #0e1b2c;
+  --muted: #dbe1e6;
+  --muted-foreground: #566474;
+  --accent: #d5dce2;
+  --accent-foreground: #0e1b2c;
+  --destructive: #c8281e;
+  --border: #c5ced6;
+  --input: #b4bfc9;
+  --ring: #17a34a;
+  --led: #17a34a;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Energiya yorlig'i shaklidagi tab / belgi */
+@layer components {
+  .tag-arrow {
+    background: var(--tag, var(--primary));
+    color: var(--tag-fg, var(--primary-foreground));
+    clip-path: polygon(0 0, calc(100% - 0.6rem) 0, 100% 50%, calc(100% - 0.6rem) 100%, 0 100%);
+  }
+  [data-category="computers"] {
+    --tag: #2457d6;
+    --tag-fg: #ffffff;
+  }
+  [data-category="appliances"] {
+    --tag: #17803a;
+    --tag-fg: #ffffff;
+  }
+  [data-category="phones"] {
+    --tag: #f7941d;
+    --tag-fg: #0e1b2c;
+  }
+}
